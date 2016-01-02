@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
-  get 'quizzes/show'
-
+  
   resources :cards, only: :index
+  resources :quizzes, only: :show
 
   devise_for :users 
 
