@@ -5,3 +5,11 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
 @import "theme";
+
+
+.page-header {
+
+	h3 {
+		margin: 0;
+	}
+}
