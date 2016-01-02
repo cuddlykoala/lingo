@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  get 'quizzes/show'
+
+  resources :cards, only: :index
+
   devise_for :users 
 
   devise_scope :user do
