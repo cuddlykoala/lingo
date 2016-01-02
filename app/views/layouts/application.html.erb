@@ -8,24 +8,30 @@
 </head>
 <body>
 
-	 <p class="notice"><%= notice %></p>
-     <p class="alert"><%= alert %></p>
-
-	<div class="container">
 		<% if user_signed_in? %>
-			<li>
-				<%= link_to 'Logout', destroy_user_session_path, method: :delete %>
-			</li>
+			<%= render "layouts/app_nav" %>
 		<% else %>
-			<li>
-				<%= link_to 'Login', login_path %>
-			</li>
-			<li>
-				<%= link_to 'Sign up', signup_path %>
-			</li>
+			<%= render "layouts/static_nav" %>
 		<% end %>
+
+
+	 <!-- <p class="notice"><%= notice %></p>
+     <p class="alert"><%= alert %></p> -->
+
 	<div id="wrap">
 		<%= yield %>
+	</div>
+
+	<div class="modal">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h4 class="modal-title">Card</h4>
+				</div>
+				<div class="modal-body">hello</div>
+				<div class="modal-footer"></div>
+			</div>
+		</div>
 	</div>
 
 </body>
