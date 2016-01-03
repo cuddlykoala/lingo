@@ -2,7 +2,7 @@ class Card < ActiveRecord::Base
   belongs_to :user
   belongs_to :word
 
-  attr_accessor :name, :translation, :word_type
+  attr_accessor :name, :translation, :word_type, :primary_language, :translation_language
 
   validates :word,
   			presence: true,
@@ -44,10 +44,14 @@ class Card < ActiveRecord::Base
   end
 
   def check_word
-  	if Word.exists?(name: name, translation: translation, word_type_id: word_type)
+  	if Word.exists?(name: name, translation: translation, 
+  					word_type_id: word_type, primary_language_id: primary_language, 
+  					translation_language_id: translation_language)
   		return
   	else
-  		w = Word.new(name: name, translation: translation, word_type_id: word_type)
+  		w = Word.new(name: name, translation: translation, 
+  						word_type_id: word_type, primary_language_id: primary_language, 
+  						translation_language_id: translation_language)
   		w.save!
   		self.word_id = w.id
   	end
