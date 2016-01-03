@@ -1,15 +1,15 @@
-
 <div class="container">
-	<%= form_for(@card) do |f| %>
-		<%= f.label :name %>
-		<%= f.text_field :name, class: 'form-control' %>
-
-		<%= f.label :translation %>
-		<%= f.text_field :translation, class: 'form-control' %>
-
-		<%= f.label :word_type %>
-		<%= f.text_field :word_type, class: 'form-control' %>
-
-		<%= f.submit "Add card", class: "btn btn-primary pull-right extra-top-2" %>
-	<% end %>
+	<div class="jumbotron" style="overflow: hidden">
+		<%= simple_form_for(@card) do |f| %>
+			<div class="col-md-6"><%= f.input :name, label: "Word" %></div>	
+			<div class="col-md-6"><%= f.input :primary_language, label: "Language", input_html: { value: "1" }, as: :hidden %></div> 
+			<div class="col-md-6"><%= f.input :translation, label: "Word Translation" %></div>
+			<div class="col-md-6"><%= f.input :translation_language, label: "Language", input_html: { value: "2" }, as: :hidden %></div>
+			<div class="col-md-12">
+				<%= f.input :word_type, label: "Word Type", collection: WordType.all %>
+				<%= f.submit "Add card", class: "btn btn-primary pull-right extra-top-2" %>
+			</div>
+		<% end %>
+	</div>
 </div>
+

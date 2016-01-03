@@ -11,7 +11,7 @@ class User < ActiveRecord::Base
   has_many :user_languages
 
   has_many :learning_languages,
-  			through: :user_languages
+  			through: :user_languages,
   			source: :language
 
   has_many :cards
