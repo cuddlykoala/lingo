@@ -16,6 +16,7 @@ Rails.application.routes.draw do
       get :noun
   		get :adjective
       get :conjunction
+      post :next_question
   	}
   end
 
