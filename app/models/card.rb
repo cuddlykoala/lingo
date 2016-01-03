@@ -2,6 +2,8 @@ class Card < ActiveRecord::Base
   belongs_to :user
   belongs_to :word
 
+  attr_accessor :name, :translation, :word_type
+
   validates :word,
   			presence: true,
   			uniqueness: {
@@ -12,6 +14,7 @@ class Card < ActiveRecord::Base
   			presence: true
 
   before_create :set_default_points
+  before_validation :check_word
 
   scope :between_points, ->(min, max) {
   	where(points: min..max)
@@ -30,13 +33,24 @@ class Card < ActiveRecord::Base
   end
 
   def increment_score
-  	points += 3
+  	self.points = points + 3
+  	self.save!
   end
 
   private
 
   def set_default_points
   	self.points = 0
+  end
+
+  def check_word
+  	if Word.exists?(name: name, translation: translation, word_type: word_type)
+  		return
+  	else
+  		w = Word.new(name: name, translation: translation, word_type: word_type)
+  		w.save!
+  		self.word_id = w.id
+  	end
   end
 
 end
