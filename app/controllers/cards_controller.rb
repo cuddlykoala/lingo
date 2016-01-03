@@ -3,4 +3,11 @@ class CardsController < ApplicationController
   def index
   	@cards = current_user.cards
   end
+
+  def new 
+  	@card = Card.new
+  end
+
+  def create
+  end
 end
