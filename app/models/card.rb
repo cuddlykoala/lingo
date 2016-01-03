@@ -44,10 +44,10 @@ class Card < ActiveRecord::Base
   end
 
   def check_word
-  	if Word.exists?(name: name, translation: translation, word_type: word_type)
+  	if Word.exists?(name: name, translation: translation, word_type_id: word_type)
   		return
   	else
-  		w = Word.new(name: name, translation: translation, word_type: word_type)
+  		w = Word.new(name: name, translation: translation, word_type_id: word_type)
   		w.save!
   		self.word_id = w.id
   	end
