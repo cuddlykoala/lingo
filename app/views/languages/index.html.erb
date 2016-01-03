@@ -3,7 +3,17 @@
 
 	<% @languages.each do |lang| %>
 
-		<h3><%= lang.name %></h3>
+		<div class="col-md-4 language-col">
+			<h3 class="language-header"><%= link_to lang.name, language_path(lang) %></h3>
+			<div id="language_<%= lang.id %>_actions">
+				<% if current_user.language_ids.include?(lang.id) %>
+					<%= link_to "Learning", "#", class: 'btn btn-default disabled' %>
+				<% else %>
+					<%= link_to "Add to Learning List", user_languages_path(language_id: lang.id), 
+					method: :post, remote: true, class: 'btn btn-primary', id: "lang_#{lang.id}_link" %>
+				<% end %>
+			</div>
+		</div>
 
 	<% end %>
 </div>

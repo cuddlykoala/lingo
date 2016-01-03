@@ -6,7 +6,7 @@
 			<div class="col-md-6"><%= f.input :translation, label: "Word Translation" %></div>
 			<div class="col-md-6"><%= f.input :translation_language, label: "Language", input_html: { value: "2" }, as: :hidden %></div>
 			<div class="col-md-12">
-				<%= f.input :word_type, label: "Word Type", collection: WordType.all %>
+				<%= f.input :word_type, label: "Word Type", collection: WordType.all, selected: @word_type.id %>
 				<%= f.submit "Add card", class: "btn btn-primary pull-right extra-top-2" %>
 			</div>
 		<% end %>

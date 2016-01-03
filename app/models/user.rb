@@ -4,22 +4,23 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
+  attr_accessor :user_langs
+
   belongs_to :primary_language,
   			class_name: "Language",
   			foreign_key: :primary_language_id
 
   has_many :user_languages
 
-  has_many :learning_languages,
-  			through: :user_languages,
-  			source: :language
-
-  accepts_nested_attributes_for :user_languages
+  has_many :languages,
+  			through: :user_languages
 
   has_many :cards
 
   has_many :words,
   			through: :cards
+
+  before_save :update_languages
 
   def daily_cards
   	Card.daily(self)
@@ -31,6 +32,16 @@ class User < ActiveRecord::Base
 
   def monthly_cards
   	Card.monthly(self)
+  end
+
+  def cards_for_type(type)
+    cs = []
+    self.cards.each do |c|
+      if c.word.word_type == type
+        cs << c
+      end
+    end
+    return cs
   end
 
   def cards_for_frequency_type(freq, type)
@@ -65,6 +76,16 @@ class User < ActiveRecord::Base
   		end
   	end
   	return cards
+  end
+
+  private
+
+  def update_languages
+    unless user_langs.nil?
+      user_langs.each do |l|
+        self.user_languages.find_or_create_by(language_id: l)
+      end
+    end
   end
 
 end

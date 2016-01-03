@@ -1,12 +1,16 @@
 <div class="container" id="cards">
 
-	<h1>Cards</h1>
+	<% if @word_type.nil? %>
+		<h1>Cards</h1>
+	<% else %>
+		<h1><%= @word_type.name.capitalize %> Cards</h1>
+	<% end %>
 	<div class="container">
 		<table class="table table-striped table-hover">
 			<thead>
 				<th>#</th>
-				<th>German</th>
-				<th>English</th>
+				<th><%= current_user.primary_language.name %></th>
+				<th><%= current_user.user_languages.last.language.name %></th>
 			</thead>
 			<tbody>
 				<% @cards.each_with_index do |card, index| %>
@@ -18,10 +22,13 @@
 				<% end %>
 			</tbody>
 		</table>
-			
-		<%= link_to new_card_path(), class: 'btn btn-primary pull-right' do %>
-			Add Card
+
+		<% if @word_type.nil? %>
+			<%= link_to "Add Card", new_card_path, class: 'btn btn-primary pull-right' %>
+		<% else %>
+			<%= link_to "Add Card", new_card_path(word_type_id: @word_type.id), class: 'btn btn-primary pull-right' %>
 		<% end %>
+
 	</div>
 
 <!-- 

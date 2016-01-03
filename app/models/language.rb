@@ -6,6 +6,9 @@ class Language < ActiveRecord::Base
 			through: :user_languages,
 			source: :user
 
+	has_many :words,
+			foreign_key: :translation_language_id
+
 	validates :name,
 			  presence: true,
 			  uniqueness: {

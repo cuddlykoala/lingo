@@ -2,13 +2,19 @@ Rails.application.routes.draw do
 
   get 'users/show'
 
-  get 'users/update'
+  resources :users, only: :update
+
+  resources :user_languages, only: :create
 
   resources :languages, except: [:edit, :update, :destroy]
 
   resources :words, except: [:edit, :destroy]
 
   resources :cards, only: [:index, :new, :create]
+
+  resources :word_types do
+    get :cards, to: "cards#by_word_type", as: :cards
+  end
 
   resources :quizzes, only: :show do
   	member {

@@ -1,2 +1,16 @@
 <h1>Users#show</h1>
-<p>Find me in app/views/users/show.html.erb</p>
+
+<%= simple_form_for @user, url: user_path(@user), method: :put do |f| %>
+	<%= f.input :primary_language_id, collection: @languages %>
+
+	<% @languages.each do |lang| %>
+		<%= label_tag lang.name %>
+		<% if @user.languages.include?(lang) %>
+			<%= check_box_tag "user[user_langs][]", lang.id, checked: true %>
+		<% else %>
+			<%= check_box_tag "user[user_langs][]", lang.id %>
+		<% end %>
+	<% end %>
+
+	<%= f.submit %>
+<% end %>
