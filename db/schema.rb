@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160103064825) do
+ActiveRecord::Schema.define(version: 20160103073022) do
 
   create_table "cards", force: :cascade do |t|
     t.integer  "user_id"
@@ -30,6 +30,16 @@ ActiveRecord::Schema.define(version: 20160103064825) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "user_languages", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "language_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  add_index "user_languages", ["language_id"], name: "index_user_languages_on_language_id"
+  add_index "user_languages", ["user_id"], name: "index_user_languages_on_user_id"
+
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
     t.string   "encrypted_password",     default: "", null: false
@@ -43,9 +53,11 @@ ActiveRecord::Schema.define(version: 20160103064825) do
     t.string   "last_sign_in_ip"
     t.datetime "created_at",                          null: false
     t.datetime "updated_at",                          null: false
+    t.integer  "primary_language_id"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true
+  add_index "users", ["primary_language_id"], name: "index_users_on_primary_language_id"
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
 
   create_table "word_types", force: :cascade do |t|

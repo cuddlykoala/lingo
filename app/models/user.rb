@@ -4,6 +4,16 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
+  belongs_to :primary_language,
+  			class_name: "Language",
+  			foreign_key: :primary_language
+
+  has_many :user_languages
+
+  has_many :learning_languages,
+  			through: :user_languages
+  			source: :language
+
   has_many :cards
 
   has_many :words,
