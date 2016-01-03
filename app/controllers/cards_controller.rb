@@ -10,9 +10,10 @@ class CardsController < ApplicationController
 
   def create
   	@card = Card.new(card_params)
+  	@card.user = current_user
   	respond_to do |f|
   		if @card.save
-  			f.html redirect_to cards_path, notice: "#{@card.word} card saved to your weekly pile!"
+  			f.html {redirect_to cards_path, notice: "#{@card.word} card saved to your weekly pile!"}
   			f.js
 	  	else
 	  		f.html { render :new }
