@@ -14,7 +14,7 @@ class Word < ActiveRecord::Base
   validates :name,
   			presence: :true,
   			uniqueness: {
-  				scope: :word_type
+  				scope: [:word_type, :translation]
   			}
 
   validates :translation,
