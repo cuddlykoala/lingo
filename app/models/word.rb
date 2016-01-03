@@ -19,7 +19,6 @@ class Word < ActiveRecord::Base
 
   private
 
-
   def check_prop(prop)
   	if (prop == "1")
   		true
