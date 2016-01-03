@@ -1,7 +1,13 @@
 Rails.application.routes.draw do
   
   resources :cards, only: :index
-  resources :quizzes, only: :show
+
+  resources :quizzes, only: :show do
+  	member {
+  		get :verb
+  		get :adjective
+  	}
+  end
 
   devise_for :users 
 

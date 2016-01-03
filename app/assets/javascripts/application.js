@@ -18,3 +18,12 @@
 //= require react_ujs
 //= require components
 //= require_tree .
+
+$(function() {
+
+	$('#wrap').on('click', '.js-container-close', function() {
+		$(this).closest('.js-closable').remove();
+		$('#quiz_nav a').removeClass("disabled");
+	});
+
+});
