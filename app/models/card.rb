@@ -25,11 +25,11 @@ class Card < ActiveRecord::Base
   end
 
   def self.weekly(user)
-  	self.between_points(12, 24).where(user: user)
+  	self.between_points(13, 24).where(user: user)
   end
 
   def self.monthly(user)
-  	self.between_points(24, 100).where(user: user)
+  	self.between_points(25, 100).where(user: user)
   end
 
   def increment_score
