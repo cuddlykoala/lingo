@@ -12,12 +12,18 @@ class Word < ActiveRecord::Base
   has_many :cards
 
   validates :name,
-  			presence: :true,
-  			uniqueness: {
-  				scope: [:word_type, :translation]
-  			}
+  			presence: :true
+
+  validates_uniqueness_of :name, 
+  			scope: [:translation, :translation_language]
 
   validates :translation,
+  			presence: true
+
+  validates :primary_language,
+  			presence: true
+
+  validates :translation_language,
   			presence: true
 
   validates :word_type,
