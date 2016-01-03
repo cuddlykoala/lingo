@@ -6,6 +6,7 @@ class LanguagesController < ApplicationController
   end
 
   def show
+  	@popular_words = @language.words
   end
 
   def new
@@ -14,6 +15,11 @@ class LanguagesController < ApplicationController
 
   def create
   	@language = Language.new(language_params)
+  	if @language.save
+  		redirect_to languages_path, notice: "Language created"
+  	else
+  		render :new
+  	end
   end
 
   private

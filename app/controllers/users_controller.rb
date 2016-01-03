@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
   def show
+  	@languages = Language.all
   	@user = current_user
   end
 
@@ -7,7 +8,7 @@ class UsersController < ApplicationController
   	@user = current_user
   	respond_to do |format|
   	  	if @user.update(user_params)
-  			format.html { redirect_to user_path, notice: "User preferences updated." }
+  			format.html { redirect_to users_show_path, notice: "User preferences updated." }
   			format.js
   		else
   			format.html { render :new }
@@ -20,6 +21,6 @@ class UsersController < ApplicationController
 
   def user_params
   	params.require(:user).permit(:primary_language_id, 
-  								 :user_languages_attributes => [:language_id])
+  								 :user_langs => [])
   end
 end

@@ -1,11 +1,13 @@
 class CardsController < ApplicationController
 	before_filter :authenticate_user!
+  before_action :set_word_type, only: :by_word_type
   def index
   	@cards = current_user.cards
   end
 
   def new
   	@card = Card.new
+    @word_type = params[:word_type_id].present? ? WordType.find(params[:word_type_id]) : nil
   end
 
   def create
@@ -20,6 +22,11 @@ class CardsController < ApplicationController
 	  		f.js
 	  	end
 		end
+  end
+
+  def by_word_type
+    @cards = current_user.cards_for_type(@word_type)
+    render :template => 'cards/index'
   end
 
   private
