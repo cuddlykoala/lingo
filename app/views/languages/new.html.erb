@@ -1,0 +1,11 @@
+<div class="container">
+	<div class="row">
+		<h1>New Language</h1>
+
+		<%= simple_form_for @language do |f| %>
+			<%= f.input :name %>
+
+			<%= f.button :submit %>
+		<% end %>
+	</div>
+</div>

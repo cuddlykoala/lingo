@@ -1,12 +1,12 @@
 Rails.application.routes.draw do
-  
-  get 'words/index'
 
-  get 'words/show'
+  get 'users/show'
 
-  get 'word_types/index'
+  get 'users/update'
 
-  get 'word_types/show'
+  resources :languages, except: [:edit, :update, :destroy]
+
+  resources :words, except: [:edit, :destroy]
 
   resources :cards, only: [:index, :new, :create]
 
