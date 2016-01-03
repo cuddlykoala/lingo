@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160103055207) do
+ActiveRecord::Schema.define(version: 20160103064825) do
 
   create_table "cards", force: :cascade do |t|
     t.integer  "user_id"
@@ -23,6 +23,12 @@ ActiveRecord::Schema.define(version: 20160103055207) do
 
   add_index "cards", ["user_id"], name: "index_cards_on_user_id"
   add_index "cards", ["word_id"], name: "index_cards_on_word_id"
+
+  create_table "languages", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
@@ -51,11 +57,15 @@ ActiveRecord::Schema.define(version: 20160103055207) do
   create_table "words", force: :cascade do |t|
     t.string   "name"
     t.integer  "word_type_id"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
     t.string   "translation"
+    t.integer  "primary_language_id"
+    t.integer  "translation_language_id"
   end
 
+  add_index "words", ["primary_language_id"], name: "index_words_on_primary_language_id"
+  add_index "words", ["translation_language_id"], name: "index_words_on_translation_language_id"
   add_index "words", ["word_type_id"], name: "index_words_on_word_type_id"
 
 end

@@ -1,6 +1,14 @@
 class Word < ActiveRecord::Base
   belongs_to :word_type
 
+  belongs_to :primary_language,
+  			 class_name: "Language",
+  			 foreign_key: :primary_language_id
+
+  belongs_to :translation_language,
+  			 class_name: "Language",
+  			 foreign_key: :translation_language_id
+
   has_many :cards
 
   validates :name,
