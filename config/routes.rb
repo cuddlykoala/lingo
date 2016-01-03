@@ -13,7 +13,9 @@ Rails.application.routes.draw do
   resources :quizzes, only: :show do
   	member {
   		get :verb
+      get :noun
   		get :adjective
+      get :conjunction
   	}
   end
 

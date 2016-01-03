@@ -1,3 +1,37 @@
 // Place all the styles related to the quizzes controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+input.word-input {
+	box-shadow: none !important;
+
+	:focus {
+		background-color: #fff;
+	}
+}
+
+section.quiz-progress {
+	overflow: hidden;
+
+	div.completion-fraction {
+		position: relative; 
+		right: 15px;
+	}
+
+	div.progress {
+		margin-top: 27px;
+	}
+}
+
+div.question-card {
+	margin-top: 10px;
+
+	h2 {
+		margin: 0;
+	}
+
+	input[value="submit"] {
+		padding: 10px 15px;
+		float: right;
+	}
+}

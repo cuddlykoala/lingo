@@ -6,8 +6,15 @@ class QuizzesController < ApplicationController
   	
   end
 
+  def noun
+
+  end
+
   def adjective
   	
   end
 
+  def conjunction
+
+  end
 end
