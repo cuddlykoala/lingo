@@ -1,0 +1,10 @@
+<%= form_for(@card) do |f| %>
+	<%= f.label :name %>
+	<%= f.text_field :name, class: 'form-control' %>
+
+	<%= f.label :translation %>
+	<%= f.text_field :translation, class: 'form-control' %>
+
+	<%= f.label :word_type %>
+	<%= f.text_field :word_type, class: 'form-control' %>
+<% end %>
