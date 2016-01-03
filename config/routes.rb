@@ -1,5 +1,13 @@
 Rails.application.routes.draw do
   
+  get 'words/index'
+
+  get 'words/show'
+
+  get 'word_types/index'
+
+  get 'word_types/show'
+
   resources :cards, only: :index
 
   resources :quizzes, only: :show do
