@@ -6,7 +6,7 @@ class LanguagesController < ApplicationController
   end
 
   def show
-  	@popular_words = @language.words
+  	@words = @language.words
   end
 
   def new

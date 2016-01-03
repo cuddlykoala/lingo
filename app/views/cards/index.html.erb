@@ -11,23 +11,27 @@
 				<th>#</th>
 				<th><%= current_user.primary_language.name %></th>
 				<th><%= current_user.user_languages.last.language.name %></th>
+				<th>Word Type</th>
 			</thead>
 			<tbody>
 				<% @cards.each_with_index do |card, index| %>
 					<tr>
-						<th><%= index %></th>
-						<th><%= card.word.name %></th>
-						<th><%= card.word.translation %></th>
+						<td><%= index %></td>
+						<td><%= card.word.name %></td>
+						<td><%= card.word.translation %></td>
+						<td><%= link_to card.word.word_type.name, word_type_cards_path(word_type_id: card.word.word_type.id) %></td>
 					</tr>
 				<% end %>
 			</tbody>
 		</table>
 
-		<% if @word_type.nil? %>
+		<div class="new-card-container">
+					<% if @word_type.nil? %>
 			<%= link_to "Add Card", new_card_path, class: 'btn btn-primary pull-right' %>
 		<% else %>
 			<%= link_to "Add Card", new_card_path(word_type_id: @word_type.id), class: 'btn btn-primary pull-right' %>
 		<% end %>
+		</div>
 
 	</div>
 

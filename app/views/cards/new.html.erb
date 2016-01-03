@@ -1,15 +1,9 @@
 <div class="container">
 	<div class="jumbotron" style="overflow: hidden">
-		<%= simple_form_for(@card) do |f| %>
-			<div class="col-md-6"><%= f.input :name, label: "Word" %></div>	
-			<div class="col-md-6"><%= f.input :primary_language, label: "Language", input_html: { value: "1" }, as: :hidden %></div> 
-			<div class="col-md-6"><%= f.input :translation, label: "Word Translation" %></div>
-			<div class="col-md-6"><%= f.input :translation_language, label: "Language", input_html: { value: "2" }, as: :hidden %></div>
-			<div class="col-md-12">
-				<%= f.input :word_type, label: "Word Type", collection: WordType.all, selected: @word_type.id %>
-				<%= f.submit "Add card", class: "btn btn-primary pull-right extra-top-2" %>
-			</div>
-		<% end %>
+		<%= render "form" %>
 	</div>
 </div>
 
+<script type="text/javascript">
+	$('#card_name').focus();
+</script>

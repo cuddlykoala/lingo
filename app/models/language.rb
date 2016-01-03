@@ -7,7 +7,9 @@ class Language < ActiveRecord::Base
 			source: :user
 
 	has_many :words,
-			foreign_key: :translation_language_id
+			 class_name: "Word",
+			foreign_key: :translation_language_id,
+			dependent: :destroy
 
 	validates :name,
 			  presence: true,

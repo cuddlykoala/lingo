@@ -9,7 +9,8 @@ class Word < ActiveRecord::Base
   			 class_name: "Language",
   			 foreign_key: :translation_language_id
 
-  has_many :cards
+  has_many :cards,
+            dependent: :destroy
 
   validates :name,
   			presence: :true

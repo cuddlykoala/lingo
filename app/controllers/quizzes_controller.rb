@@ -7,7 +7,7 @@ class QuizzesController < ApplicationController
   end
 
   def noun
-
+    @index = params[:index].present? ? params[:index] : 1
   end
 
   def adjective

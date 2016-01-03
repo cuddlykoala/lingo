@@ -9,7 +9,7 @@
 		<div class="col-md-12">
 			<h2>Popular Words</h2>
 			<ul>
-			<% @popular_words.each do |word| %>
+			<% @words.each do |word| %>
 				<li><%= word.name %> - <%= word.translation %> </li>
 			<% end %>
 			</ul>

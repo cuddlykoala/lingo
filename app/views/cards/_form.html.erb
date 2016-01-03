@@ -1,0 +1,14 @@
+<%= simple_form_for @card do |f| %>
+	<div class="col-md-6"><%= f.input :name, label: "Word" %></div>	
+	<div class="col-md-6"><%= f.input :primary_language, label: "Language", input_html: { value: current_user.primary_language.id }, as: :hidden %></div> 
+	<div class="col-md-6"><%= f.input :translation, label: "Word Translation" %></div>
+	<div class="col-md-6"><%= f.input :translation_language, label: "Language", input_html: { value: current_user.languages.last.id }, as: :hidden %></div>
+	<div class="col-md-12">
+		<% if @word_type.nil? %>
+			<%= f.input :word_type, label: "Word Type", collection: WordType.all, selected: word_types.first  %>
+		<% else %>
+			<%= f.input :word_type, label: "Word Type", collection: WordType.all, selected: @word_type.id  %>
+		<% end %>
+		<%= f.submit "Add card", class: "btn btn-primary pull-right extra-top-2" %>
+	</div>
+<% end %>
