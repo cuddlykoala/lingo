@@ -4,7 +4,9 @@
 	<div class="row">
 
 		<% @cards.each_with_index do |card, index| %>
-			<h3><%= card.word.name %></h3>
+			<div class="col-md-4">
+				<h3><%= card.word.name %> | <%= card.word.translation %></h3>
+			</div>
 		<% end %>
 
 		<div class="col-md-4">
