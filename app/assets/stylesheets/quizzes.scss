@@ -4,6 +4,10 @@
 
 input.word-input {
 	box-shadow: none !important;
+
+	:focus {
+		background-color: #fff;
+	}
 }
 
 section.quiz-progress {
