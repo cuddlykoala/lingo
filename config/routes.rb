@@ -8,7 +8,7 @@ Rails.application.routes.draw do
 
   get 'word_types/show'
 
-  resources :cards, only: :index
+  resources :cards, only: [:index, :new, :create]
 
   resources :quizzes, only: :show do
   	member {
