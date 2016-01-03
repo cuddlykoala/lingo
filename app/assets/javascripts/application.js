@@ -21,7 +21,8 @@
 
 $(function() {
 
-	$('#wrap').on('click', '.js-container-close', function() {
+	$('#wrap').on('click', '.js-container-close', function(event) {
+		event.preventDefault();
 		$(this).closest('.js-closable').remove();
 		$('#quiz_nav a').removeClass("disabled");
 	});

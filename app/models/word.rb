@@ -9,6 +9,9 @@ class Word < ActiveRecord::Base
   				scope: :word_type
   			}
 
+  validates :translation,
+  			presence: true
+
   validates :word_type,
   			presence: true
 
