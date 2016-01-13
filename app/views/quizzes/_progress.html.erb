@@ -1,0 +1,49 @@
+<div class="jumbotron js-closable">
+	<a class="js-container-close btn btn-danger pull-right" href="#"><span class="glyphicon glyphicon-remove-sign"></span> </a>
+	<h2>Noun Quiz</h2>
+
+	<% if @index != -1 %>
+
+		<div class="quiz-question">
+			<div class="media">
+			  <div class="media-body">
+			    <h4 class="media-heading">Question 1</h4>
+			    <p>Translate the <%= @wordtype.name %>.</p>
+			  </div>
+			</div>
+			<div class="question-card">
+				<div class="primary-word">
+					<h3><%= @currentcard.word.name %></h3>
+				</div>
+			</div>
+
+			<div class="question-card">
+				<div class="secondary-word">
+					<%= form_tag submit_response_quiz_path(index: @index, word_type_id: @wordtype.id), remote: true, style: "overflow: hidden;" do %>
+						<div class="col-md-8">
+							<%= text_field_tag "answer", "" , class: "word-input form-control" %>
+						</div>
+						<div class="col-md-2 pull-right">
+							<%= submit_tag "next question", class: "btn btn-primary" %>
+						</div>
+					<% end %>
+				</div>
+			</div>
+
+			<br>
+		</div>
+
+	<% end %>
+	
+	<!-- Progress bar -->
+	<section class="quiz-progress">
+		<div class="col-md-3 completion-fraction">
+			<div class="progress-tag">
+				<h4><%= @index %>/<%= @total %> <small>Questions</small></h4>
+			</div>
+		</div>
+		<div class="progress col-md-9" style="padding: 0">
+		  <div class="progress-bar" style="width: <%= (@index.to_f / @total.to_f) * 100.0 %>%;"></div>
+		</div>
+	</section>
+</div>

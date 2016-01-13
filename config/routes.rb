@@ -18,11 +18,8 @@ Rails.application.routes.draw do
 
   resources :quizzes, only: :show do
   	member {
-  		get :verb
-      get :noun
-  		get :adjective
-      get :conjunction
-      post :next_question
+  		get :progress
+      post :submit_response
   	}
   end
 

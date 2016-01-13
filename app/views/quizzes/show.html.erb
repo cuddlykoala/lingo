@@ -3,10 +3,10 @@
 <h1>Today's Quiz <small>(23 Questions)</small></h1>	
 	<div class="row">
 		<div class="col-md-2" id="quiz_nav">
-			<%= link_to "Verb Quiz", verb_quiz_path(id: "1"), remote: true, class: 'btn btn-success btn-block' %>
-			<%= link_to "Noun Quiz", noun_quiz_path(id: "1", word_type_id:""), remote: true, class: 'btn btn-success btn-block' %>
-			<%= link_to "Adjective Quiz",  adjective_quiz_path(id: "1"), remote: true, class: 'btn btn-success btn-block' %>
-			<%= link_to "Conjunction Quiz", conjunction_quiz_path(id: "1"), remote: true, class: 'btn btn-success btn-block' %>
+
+			<% word_types.each do |wt| %>
+	    	<%= link_to wt.name.capitalize.pluralize, progress_quiz_path(id: "1", word_type_id: wt.id), remote: true, class: 'btn btn-success btn-block' %>
+	    <% end %>
 		</div>
 
 		<div id="quiz_container" class="col-md-10"></div>
