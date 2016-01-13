@@ -2,7 +2,7 @@
 	<a class="js-container-close btn btn-danger pull-right" href="#"><span class="glyphicon glyphicon-remove-sign"></span> </a>
 	<h2>Noun Quiz</h2>
 
-	<% if @index != -1 %>
+	<% if !@currentcard.nil? %>
 
 		<div class="quiz-question">
 			<div class="media">
@@ -21,7 +21,7 @@
 				<div class="secondary-word">
 					<%= form_tag submit_response_quiz_path(index: @index, word_type_id: @wordtype.id), remote: true, style: "overflow: hidden;" do %>
 						<div class="col-md-8">
-							<%= text_field_tag "answer", "" , class: "word-input form-control" %>
+							<%= text_field_tag "response", "" , class: "word-input form-control" %>
 						</div>
 						<div class="col-md-2 pull-right">
 							<%= submit_tag "next question", class: "btn btn-primary" %>
@@ -33,13 +33,17 @@
 			<br>
 		</div>
 
+	<% else  %>
+		<h4>
+			Congratulations, you have finished the quiz!
+		</h4>
 	<% end %>
 	
 	<!-- Progress bar -->
 	<section class="quiz-progress">
 		<div class="col-md-3 completion-fraction">
 			<div class="progress-tag">
-				<h4><%= @index %>/<%= @total %> <small>Questions</small></h4>
+				<h4><%= @index > @total ? @total : @index %>/<%= @total %> <small>Questions</small></h4>
 			</div>
 		</div>
 		<div class="progress col-md-9" style="padding: 0">

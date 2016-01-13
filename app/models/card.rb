@@ -14,7 +14,7 @@ class Card < ActiveRecord::Base
   			presence: true
 
   before_create :set_default_points
-  before_validation :check_word
+  before_create :check_word
 
   scope :between_points, ->(min, max) {
   	where(points: min..max)
@@ -35,6 +35,23 @@ class Card < ActiveRecord::Base
   def increment_score
   	self.points = points + 3
   	self.save!
+  end
+
+  def decrement_score
+    if points < 3
+      self.points = 0
+    else
+      self.points = points - 3
+    end
+    self.save!
+  end
+
+  def is_correct?(response)
+    if word.translation.downcase == response.downcase
+      return true
+    else
+      return false
+    end
   end
 
   private

@@ -9,25 +9,27 @@ class QuizzesController < ApplicationController
     @index = params[:index].present? ? params[:index].to_i : 0;
     @currentcard = @cards[@index]
     @index = @index + 1;
-    @nextcard = @cards[@index]
     @total = @cards.length;
   end
 
   def submit_response
-    @answer = params[:response]
-    @index = params[:index]
+    @response = params[:response]
+    @index = params[:index].to_i
     @word_type_id = params[:word_type_id]
     @cards = current_user.daily_cards_for_type(WordType.find(@word_type_id));
+    @currentcard = @cards[@index]
 
-    if @index == @cards.length
-      @index = -1;
+    if !@currentcard.nil?
+      if @currentcard.is_correct?(params[:response])
+        @currentcard.increment_score
+      else
+        @currentcard.decrement_score
+      end
     end
-    
+
     redirect_to progress_quiz_path(index: @index, word_type_id: @word_type_id)
   end
 
-  def summary
-  end
 
   private 
  
