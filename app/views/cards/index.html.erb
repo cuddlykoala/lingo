@@ -16,10 +16,10 @@
 			<tbody>
 				<% @cards.each_with_index do |card, index| %>
 					<tr>
-						<td><%= index %></td>
+						<td><%= index + 1 %></td>
 						<td><%= card.word.name %></td>
 						<td><%= card.word.translation %></td>
-						<td><%= link_to card.word.word_type.name, word_type_cards_path(word_type_id: card.word.word_type.id) %></td>
+						<td><%= link_to card.word.word_type.name.capitalize, word_type_cards_path(word_type_id: card.word.word_type.id) %></td>
 					</tr>
 				<% end %>
 			</tbody>

@@ -3,7 +3,7 @@
 
 	<% @languages.each do |lang| %>
 
-		<div class="col-md-4 language-col">
+		<div class="col-md-3 language-col">
 			<h3 class="language-header"><%= link_to lang.name, language_path(lang) %></h3>
 			<div id="language_<%= lang.id %>_actions">
 				<% if current_user.language_ids.include?(lang.id) %>
